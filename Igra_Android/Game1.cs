@@ -32,6 +32,8 @@ namespace Igra_Android
             maca.brzina_kretanja += 1;
             
         }
+		Sprite start_button;
+
 		Sprite game_over;
 		Stopwatch sat;
 
@@ -113,16 +115,16 @@ namespace Igra_Android
 			//jst = new Jostick (Content.Load<Texture2D> ("prazan_krug"), new Rectangle (200, visina - 200, 24, 24), 150);
 
 			game_over = new Sprite ();
-			game_over.rectangle = new Rectangle (visina, 0, 300, 409);
+			game_over.rectangle = new Rectangle (-visina, 0, 300, 409);
 			game_over.texture=Content.Load<Texture2D>("game_over");
 
 			maca = new Barijera(Content.Load<Texture2D>("maca"), new Rectangle(2200, 0,  80,  80));
 			stit = new Stit(Content.Load<Texture2D>("stit"), new Rectangle(2000, 50, 64, 64));
             lvlUp = new LevelUp(Content.Load<Texture2D>("be_ready"), new Rectangle(1000, 250,150, 50));
-			barijera = new Barijera(Content.Load<Texture2D>("barijera"), new Rectangle(1000, 0, 35, 160));
-			barijera1 = new PokretnaBarijera(Content.Load<Texture2D>("barijera"), new Rectangle(1250, 100, 35, 150), false, visina);
-			barijera2 = new Barijera(Content.Load<Texture2D>("barijera"), new Rectangle(1500, 400, 35, 160));
-			barijera3 = new PokretnaBarijera(Content.Load<Texture2D>("barijera"), new Rectangle(1750, 500, 35, 150), true, sirina);
+			barijera = new Barijera(Content.Load<Texture2D>("barijera"), new Rectangle(1000, 0, 35, 100));
+			barijera1 = new PokretnaBarijera(Content.Load<Texture2D>("barijera"), new Rectangle(1250, 100, 35, 100), false, visina);
+			barijera2 = new Barijera(Content.Load<Texture2D>("barijera"), new Rectangle(1500, 400, 35, 100));
+			barijera3 = new PokretnaBarijera(Content.Load<Texture2D>("barijera"), new Rectangle(1750, 500, 35, 100), true, sirina);
         }
 
         /// <summary>
@@ -199,9 +201,16 @@ namespace Igra_Android
 				if (sat.ElapsedMilliseconds == 0 || sat.ElapsedMilliseconds > 2400)
 					sat.Restart ();
 
-				if (game_over.rectangle.X < sirina / 2 - game_over.rectangle.Width / 2)
-					game_over.rectangle.X--;
-				game_over.rectangle.Y = visina / 2 - game_over.rectangle.Height / 2;
+
+				game_over.rectangle.X = player1.rectangle.X - game_over.rectangle.Width / 2;
+				if (game_over.rectangle.X < 0)
+					game_over.rectangle.X = 0;
+
+				if (game_over.rectangle.X > sirina - game_over.rectangle.Width)
+					game_over.rectangle.X = sirina - game_over.rectangle.Width;
+
+				if (game_over.rectangle.Y > visina / 2 - game_over.rectangle.Height / 2)
+					game_over.rectangle.Y -= 1;
 				if(sat.ElapsedMilliseconds>2300)
 					Initialize ();
 				break;
