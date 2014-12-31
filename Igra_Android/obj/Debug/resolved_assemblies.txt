@@ -1,0 +1,3 @@
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\packages\Lidgren.Network.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\packages\MonoGame.Framework.dll

@@ -1,0 +1,16 @@
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.pdb
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.dll.mdb
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.Igra_Android.apk
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Igra_Android.Igra_Android-Signed.apk
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\Lidgren.Network.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\bin\Debug\MonoGame.Framework.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\Igra_Android.csprojResolveAssemblyReference.cache
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\Igra_Android.dll
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\Igra_Android.pdb
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\android\bin\Igra_Android.Igra_Android.apk
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\drawable\icon.png
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\drawable\splash.png
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\values\styles.xml
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\R.cs.flag
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\uploadflags.txt
