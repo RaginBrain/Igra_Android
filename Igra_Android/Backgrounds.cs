@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
+using System.Collections.Generic;
 
 namespace Igra_Android
 {
@@ -39,15 +40,12 @@ namespace Igra_Android
    public  class Player : Sprite
     {
         public Animation playerAnimation=new Animation();
-        KeyboardState keyState;
-
 
 		public TouchCollection touchCollection;
         public Texture2D texture_stit;
         public float speed;
         public Vector2 Velocity;
-        public bool horizontal;
-        public bool vertical;
+
         public int score;
         public bool alive;
         public bool stit;
@@ -103,42 +101,37 @@ namespace Igra_Android
 
 
 
-					if (tl.Position.Y < centar.Y)
+					if (tl.Position.Y < centar.Y-rectangle.Height/2)
 					{
 						if (Velocity.Y > 0)
 							Velocity.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.3f*faktor_Y;
 						Velocity.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-						vertical = true;
 					}
 
-					else if(tl.Position.Y>centar.Y)
+					else if(tl.Position.Y>centar.Y+rectangle.Height/2)
 					{
 						if (Velocity.Y < 0)
 							Velocity.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.3f*faktor_Y;
 						Velocity.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds*faktor_Y;
-						vertical = true;
 					}
 
-					if (tl.Position.X < centar.X) 
+					if (tl.Position.X < centar.X-rectangle.Width/2) 
 					{
 						if (Velocity.X > 0)
 							Velocity.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.3f*faktor_X;
 						Velocity.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds*faktor_X;
-						horizontal = true;
 					}
-					else if(tl.Position.X > centar.X)
+					else if(tl.Position.X > centar.X+rectangle.Width/2)
 					{
 						if (Velocity.X < 0)
 							Velocity.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds * 0.3f*faktor_X;
 						Velocity.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds*faktor_X;
-						horizontal = true;
 					}
 				}
 
 			}
                 
-			vertical = false;
-			horizontal = false;
+
 
 			rectangle.X += (int)(Velocity.X );
 			rectangle.Y += (int)(Velocity.Y);
@@ -183,6 +176,61 @@ namespace Igra_Android
             score = 0;
             stit = false;
         }
-
     }
+
+
+	public class Znamenka:Sprite
+	{
+		public bool vidljiv;
+		public int broj;
+		public int pozicija;
+		public List<Texture2D> lista_textura;
+		public Znamenka()
+		{
+			lista_textura = new List<Texture2D> ();
+		}
+
+	}
+
+	public class Score
+	{
+
+		public List<Znamenka> lista_znamenki;
+
+		public void Update(int rezultat)
+		{
+			string s = rezultat.ToString();
+			for (int i = 0; i < s.Length; i++)
+			{
+				int ind = int.Parse(s[i].ToString());
+				lista_znamenki[i].pozicija = i;
+				lista_znamenki[i].broj = ind;
+				lista_znamenki[i].texture = lista_znamenki[i].lista_textura[ind];
+			}
+		}
+
+		public Score(List<Texture2D> teksture)
+		{
+			lista_znamenki = new List<Znamenka> ();
+			for (int i = 0; i < 7; i++)
+			{
+				Znamenka x = new Znamenka ();
+				x.lista_textura = teksture;
+				lista_znamenki.Add (x);
+			} 
+		}
+
+
+		public void Draw(SpriteBatch sb,int x,int y, int sirina,int visina)
+		{
+			int poz_X = x;
+			foreach(Znamenka z in lista_znamenki)
+			{
+				sb.Draw (z.texture, new Rectangle (poz_X, y, sirina, visina), Color.White);
+				poz_X += sirina;
+			}
+		}
+
+
+	}
 }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Igra_Android
 {
@@ -16,9 +17,7 @@ namespace Igra_Android
 
 		enum GameState { Start, InGame, GameOver };
 		GameState currentGameState = GameState.InGame;
-
-
-
+	
         public void LelevUp()
         {
             scrolling1.brzina_kretanja += 1;
@@ -32,6 +31,9 @@ namespace Igra_Android
             maca.brzina_kretanja += 1;
             
         }
+		Score rezultat;
+		List<Texture2D> lista_txtr;
+
 		Sprite start_button;
 
 		Sprite game_over;
@@ -51,11 +53,9 @@ namespace Igra_Android
         Scrolling scrolling1;
         Scrolling scrolling2;
         Player player1;
-        KeyboardState keyState;
 
 
 		TouchCollection touchCollection;
-        SpriteFont score;
 		int sirina;
 		int visina;
 
@@ -90,7 +90,7 @@ namespace Igra_Android
             player1.playerAnimation.Initialize();
             sljedeciLevel = lvlUp.level + 1;
 			sat = new Stopwatch ();
-			currentGameState = GameState.InGame;
+			currentGameState = GameState.Start;
 
         }
 
@@ -112,7 +112,28 @@ namespace Igra_Android
 			player1.texture_stit = Content.Load<Texture2D>("tica_stit");
 			//			score = Content.Load<SpriteFont> ("SpriteFont1");
 
-			//jst = new Jostick (Content.Load<Texture2D> ("prazan_krug"), new Rectangle (200, visina - 200, 24, 24), 150);
+
+			//dodavanje znamenaka
+			lista_txtr = new List<Texture2D> ();
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/0"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/1"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/2"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/3"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/4"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/5"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/6"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/7"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/8"));
+			lista_txtr.Add (Content.Load<Texture2D> ("Znamenke/9"));
+
+			rezultat = new Score (lista_txtr);
+
+
+
+
+			start_button = new Sprite ();
+			start_button.rectangle = new Rectangle (0, 0, 400, 238);
+			start_button.texture = Content.Load<Texture2D> ("oblak_start");
 
 			game_over = new Sprite ();
 			game_over.rectangle = new Rectangle (-visina, 0, 300, 409);
@@ -150,6 +171,20 @@ namespace Igra_Android
 			switch (currentGameState)
 			{
 			case GameState.Start:
+				start_button.rectangle.X = sirina / 2 - start_button.rectangle.Width/2;
+				touchCollection = TouchPanel.GetState ();
+				Rectangle pozicija_dodira;
+				foreach (TouchLocation tl in touchCollection) 
+				{
+
+					if ((tl.State == TouchLocationState.Pressed) || (tl.State == TouchLocationState.Moved)) 
+					{
+						pozicija_dodira = new Rectangle ((int)tl.Position.X, (int)tl.Position.Y, 1, 1);
+
+						if (tl.State == TouchLocationState.Pressed && start_button.rectangle.Intersects (pozicija_dodira))
+							currentGameState = GameState.InGame;
+					}
+				}
 				break;
 			case GameState.InGame:
 
@@ -161,6 +196,10 @@ namespace Igra_Android
 				scrolling1.Update ();
 				scrolling2.Update ();
 					//******************************************************************************
+
+
+
+				rezultat.Update (player1.score);
 
 				stit.Update (player1, 350, lvlUp);
 				player1.Update (gameTime, graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
@@ -228,6 +267,13 @@ namespace Igra_Android
 			switch (currentGameState) 
 			{
 			case GameState.Start:
+				spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+
+				scrolling1.Draw (spriteBatch);
+				scrolling2.Draw (spriteBatch);
+				spriteBatch.Draw (start_button.texture, start_button.rectangle, Color.White);
+				spriteBatch.End ();
+
 				break;
 			case GameState.InGame:
 				{
@@ -240,6 +286,10 @@ namespace Igra_Android
 					scrolling2.Draw (spriteBatch);
 					lvlUp.Draw (spriteBatch);
 
+					try{
+					rezultat.Draw (spriteBatch, 5, 5, 15, 40);
+					}
+					catch{}
 					//spriteBatch.Draw(jst.texture,jst.rectangle,Color.White);
 					//maca.Draw(spriteBatch);
 					stit.Draw (spriteBatch);
@@ -247,7 +297,7 @@ namespace Igra_Android
 					barijera1.Draw (spriteBatch);
 					barijera2.Draw (spriteBatch);
 					barijera3.Draw (spriteBatch);
-					spriteBatch.Draw (maca.texture, new Rectangle (maca.rectangle.X, maca.rectangle.Y + 20, 80, 80), Color.White);
+					spriteBatch.Draw (maca.texture, new Rectangle (maca.rectangle.X, maca.rectangle.Y, 80, 80), Color.White);
 					// stit.Draw(spriteBatch);
 
 					player1.playerAnimation.Draw (spriteBatch);

@@ -14,3 +14,4 @@ C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\drawabl
 C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\values\styles.xml
 C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\R.cs.flag
 C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\uploadflags.txt
+C:\Users\Ante\Documents\Projects\Igra_Android\Igra_Android\obj\Debug\res\drawable\splash1.png

@@ -68,8 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Icon.png" />
-    <AndroidResource Include="Resources\drawable\Splash.png" />
     <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\drawable\Splash1.png" />
+    <AndroidResource Include="Resources\drawable\Splash.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\logo.png" />
@@ -84,6 +85,20 @@
     <AndroidAsset Include="Assets\Content\tica_stit.png" />
     <AndroidAsset Include="Assets\Content\prazan_krug.png" />
     <AndroidAsset Include="Assets\Content\game_over.png" />
+    <AndroidAsset Include="Assets\Content\oblak_start.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\0.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\1.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\2.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\3.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\4.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\5.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\6.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\7.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\8.png" />
+    <AndroidAsset Include="Assets\Content\Znamenke\9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Assets\Content\Znamenke\" />
+  </ItemGroup>
 </Project>
