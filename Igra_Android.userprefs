@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Moj_Emulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Igra_Android\Backgrounds.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Igra_Android\Game1.cs">
     <Files>
-      <File FileName="Igra_Android\Game1.cs" Line="4" Column="4" />
-      <File FileName="Igra_Android\Backgrounds.cs" Line="1" Column="1" />
+      <File FileName="Igra_Android\Game1.cs" Line="6" Column="6" />
+      <File FileName="Igra_Android\Backgrounds.cs" Line="32" Column="32" />
       <File FileName="Igra_Android\Animation.cs" Line="1" Column="1" />
       <File FileName="Igra_Android\Barijera.cs" Line="1" Column="1" />
       <File FileName="Igra_Android\Activity1.cs" Line="1" Column="1" />

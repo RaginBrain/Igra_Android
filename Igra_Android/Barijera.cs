@@ -66,7 +66,7 @@ namespace Igra_Android
     }
     class Barijera : Sprite
     {
-        public void Update(Player igrac,int broj,int udaljenost,int sirina)
+        public virtual void Update(Player igrac,int broj,int udaljenost,int sirina)
         {
             rectangle.X -= brzina_kretanja;
             if (Dodir(igrac))
@@ -120,21 +120,26 @@ namespace Igra_Android
 
         }
         
+		public override void Update(Player igrac,int broj,int udaljenost,int sirina)
+		{
+			base.Update (igrac,broj,udaljenost,sirina);
+			if (rectangle.X < -20)
+			{
+				brzina_gibanja = r.Next(1, 3);
+			}
+			if (rectangle.Y > visina- visina/3)
+				gori=true;
+			if (rectangle.Y < 0)
+				gori = false;
+
+			if (gori)
+				rectangle.Y -= brzina_gibanja;
+			else
+				rectangle.Y += brzina_gibanja;
+		}
         public void Kretanje()
         {
-            if (rectangle.X < -20)
-            {
-                brzina_gibanja = r.Next(1, 3);
-            }
-            if (rectangle.Y > visina- visina/3)
-                gori=true;
-            if (rectangle.Y < 0)
-                gori = false;
-
-            if (gori)
-                rectangle.Y -= brzina_gibanja;
-            else
-                rectangle.Y += brzina_gibanja;
+            
         }
 
     }

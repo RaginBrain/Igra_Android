@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.IsolatedStorage;
 
 namespace Igra_Android
 {
@@ -31,6 +33,10 @@ namespace Igra_Android
             maca.brzina_kretanja += 1;
             
         }
+		IsolatedStorageFile savegameStorage = IsolatedStorageFile.GetUserStoreForDomain();
+		int high_score;
+
+		Score naj_score;
 		Score rezultat;
 		List<Texture2D> lista_txtr;
 
@@ -92,6 +98,18 @@ namespace Igra_Android
 			sat = new Stopwatch ();
 			currentGameState = GameState.Start;
 
+
+			//janje1f
+			if (savegameStorage.FileExists("high_score.txt")) 
+			{
+				IsolatedStorageFileStream isoStream = new IsolatedStorageFileStream ("high_score.txt", FileMode.OpenOrCreate,FileAccess.Read);
+				using (StreamReader sr = new StreamReader (isoStream)) 
+				{
+					high_score = int.Parse (sr.ReadLine ());
+				}	
+			} 
+			else
+				high_score = 0;
         }
 
         /// <summary>
@@ -171,6 +189,8 @@ namespace Igra_Android
 			switch (currentGameState)
 			{
 			case GameState.Start:
+
+				rezultat.Update (high_score);
 				start_button.rectangle.X = sirina / 2 - start_button.rectangle.Width/2;
 				touchCollection = TouchPanel.GetState ();
 				Rectangle pozicija_dodira;
@@ -184,6 +204,7 @@ namespace Igra_Android
 						if (tl.State == TouchLocationState.Pressed && start_button.rectangle.Intersects (pozicija_dodira))
 							currentGameState = GameState.InGame;
 					}
+
 				}
 				break;
 			case GameState.InGame:
@@ -224,8 +245,7 @@ namespace Igra_Android
 					//jst.Update (touchCollection);
 
 
-				barijera1.Kretanje ();
-				barijera3.Kretanje ();
+
 				if (player1.stit)
 					player1.playerAnimation.Image = player1.texture_stit;
 				else
@@ -250,8 +270,22 @@ namespace Igra_Android
 
 				if (game_over.rectangle.Y > visina / 2 - game_over.rectangle.Height / 2)
 					game_over.rectangle.Y -= 1;
-				if(sat.ElapsedMilliseconds>2300)
+
+				if (sat.ElapsedMilliseconds > 2300) 
+				{
+					//janje2
+					if (player1.score > high_score) 
+					{
+						IsolatedStorageFileStream isoStream = new IsolatedStorageFileStream ("high_score.txt", FileMode.OpenOrCreate,FileAccess.Write);
+						using (StreamWriter sw = new StreamWriter(isoStream)) 
+						{
+							sw.Flush ();
+							sw.WriteLine (player1.score.ToString ());
+						}	
+
+					}
 					Initialize ();
+				}
 				break;
 			}
            
@@ -272,6 +306,10 @@ namespace Igra_Android
 				scrolling1.Draw (spriteBatch);
 				scrolling2.Draw (spriteBatch);
 				spriteBatch.Draw (start_button.texture, start_button.rectangle, Color.White);
+				try{
+					rezultat.Draw (spriteBatch, sirina/2,visina-visina/3, 30, 80);
+				}
+				catch{}
 				spriteBatch.End ();
 
 				break;
@@ -314,6 +352,7 @@ namespace Igra_Android
 				scrolling2.Draw (spriteBatch);
 				spriteBatch.Draw (game_over.texture, game_over.rectangle, Color.White);
 				spriteBatch.End ();
+
 				break;
 			}
 				

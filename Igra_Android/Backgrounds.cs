@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Collections.Generic;
 
+
 namespace Igra_Android
 {
     public class Sprite
@@ -200,12 +201,17 @@ namespace Igra_Android
 		public void Update(int rezultat)
 		{
 			string s = rezultat.ToString();
-			for (int i = 0; i < s.Length; i++)
+			for (int i = 0; i < 7; i++)
 			{
-				int ind = int.Parse(s[i].ToString());
-				lista_znamenki[i].pozicija = i;
-				lista_znamenki[i].broj = ind;
-				lista_znamenki[i].texture = lista_znamenki[i].lista_textura[ind];
+				if (i < s.Length) 
+				{
+					int ind = int.Parse (s [i].ToString ());
+					lista_znamenki [i].pozicija = i;
+					lista_znamenki [i].broj = ind;
+					lista_znamenki [i].texture = lista_znamenki [i].lista_textura [ind];
+				} 
+				else
+					lista_znamenki [i].texture = null;
 			}
 		}
 
