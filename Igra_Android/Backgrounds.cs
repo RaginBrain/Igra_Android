@@ -205,13 +205,14 @@ namespace Igra_Android
 			{
 				if (i < s.Length) 
 				{
+					lista_znamenki [i].vidljiv = true;
 					int ind = int.Parse (s [i].ToString ());
 					lista_znamenki [i].pozicija = i;
 					lista_znamenki [i].broj = ind;
 					lista_znamenki [i].texture = lista_znamenki [i].lista_textura [ind];
 				} 
 				else
-					lista_znamenki [i].texture = null;
+					lista_znamenki [i].vidljiv = false;
 			}
 		}
 
@@ -232,8 +233,11 @@ namespace Igra_Android
 			int poz_X = x;
 			foreach(Znamenka z in lista_znamenki)
 			{
-				sb.Draw (z.texture, new Rectangle (poz_X, y, sirina, visina), Color.White);
-				poz_X += sirina;
+				if (z.vidljiv) 
+				{
+					sb.Draw (z.texture, new Rectangle (poz_X, y, sirina, visina), Color.White);
+					poz_X += sirina;
+				}
 			}
 		}
 
