@@ -39,6 +39,7 @@ namespace Igra_Android
     }
     class LevelUp : Sprite
     {
+
         public int level;
         public int bonus;
         public void Update(Player igrac, int broj)
@@ -66,8 +67,13 @@ namespace Igra_Android
     }
     class Barijera : Sprite
     {
+		protected Random r = new Random();
+
         public virtual void Update(Player igrac,int broj,int udaljenost,int sirina)
         {
+			int jednaipo_sirina = (int)(sirina * 1.5f);
+			int dupla_sirina=(int)sirina*2;
+
             rectangle.X -= brzina_kretanja;
             if (Dodir(igrac))
                 if (igrac.stit == true)
@@ -80,7 +86,7 @@ namespace Igra_Android
 
             if (rectangle.X < -50)
             {
-                rectangle.X = sirina;
+				rectangle.X = r.Next(jednaipo_sirina,dupla_sirina);
                 rectangle.Y = broj;
             }
         }
@@ -105,7 +111,7 @@ namespace Igra_Android
 
     class PokretnaBarijera : Barijera
     {
-        
+
         int visina;
         public bool gori;
         public int brzina_gibanja;
@@ -137,10 +143,5 @@ namespace Igra_Android
 			else
 				rectangle.Y += brzina_gibanja;
 		}
-        public void Kretanje()
-        {
-            
-        }
-
     }
 }

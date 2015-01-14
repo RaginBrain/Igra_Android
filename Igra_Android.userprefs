@@ -1,13 +1,14 @@
-﻿<Properties>
+﻿<Properties StartupItem="Igra_Android\Igra_Android.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Moj_Emulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Igra_Android\Game1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Igra_Android\Backgrounds.cs">
     <Files>
-      <File FileName="Igra_Android\Game1.cs" Line="6" Column="6" />
-      <File FileName="Igra_Android\Backgrounds.cs" Line="32" Column="32" />
+      <File FileName="Igra_Android\Game1.cs" Line="10" Column="10" />
+      <File FileName="Igra_Android\Backgrounds.cs" Line="24" Column="24" />
       <File FileName="Igra_Android\Animation.cs" Line="1" Column="1" />
       <File FileName="Igra_Android\Barijera.cs" Line="1" Column="1" />
       <File FileName="Igra_Android\Activity1.cs" Line="1" Column="1" />
       <File FileName="Igra_Android\Resources\values\Styles.xml" Line="1" Column="1" />
+      <File FileName="Igra_Android\obj\Debug\android\src\igra_android\igra_android\TrialSplashScreen.java" Line="32" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -11,7 +11,7 @@ namespace Igra_Android
 {
     public class Sprite
     {
-        public Random r = new Random();
+        
         public int brzina_kretanja;
         public Texture2D texture;
         public Rectangle rectangle;
@@ -45,7 +45,8 @@ namespace Igra_Android
 		public TouchCollection touchCollection;
         public Texture2D texture_stit;
         public float speed;
-        public Vector2 Velocity;
+
+        private Vector2 Velocity;
 
         public int score;
         public bool alive;
@@ -55,7 +56,7 @@ namespace Igra_Android
 
 		private int udajenost_X;
 		private int udaljenost_Y;
-		Point centar;
+		private Point centar;
 
 
         public float Speed
@@ -168,14 +169,16 @@ namespace Igra_Android
         }
 
 
-        public Player(Texture2D tex,Rectangle rect)
+		public Player(Texture2D tex,Texture2D tex_stit,Rectangle rect)
         {
             speed = 6;
             texture = tex;
+			texture_stit = tex_stit;
             rectangle = rect;
             alive = true;
             score = 0;
             stit = false;
+			playerAnimation.Image = tex;
         }
     }
 

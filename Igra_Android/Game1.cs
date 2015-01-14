@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
@@ -36,7 +36,6 @@ namespace Igra_Android
 		IsolatedStorageFile savegameStorage = IsolatedStorageFile.GetUserStoreForDomain();
 		int high_score;
 
-		Score naj_score;
 		Score rezultat;
 		List<Texture2D> lista_txtr;
 
@@ -125,9 +124,7 @@ namespace Igra_Android
 			scrolling1 = new Scrolling(Content.Load<Texture2D>("bg1"), new Rectangle(0, 0, sirina, visina), 3);
 			scrolling2 = new Scrolling(Content.Load<Texture2D>("bg2"), new Rectangle(sirina, 0,sirina, visina), 3);
 
-			player1 = new Player(Content.Load<Texture2D>("tica_gotova"), new Rectangle(0, 0, 50, 57));
-			player1.playerAnimation.Image = player1.texture;
-			player1.texture_stit = Content.Load<Texture2D>("tica_stit");
+			player1 = new Player(Content.Load<Texture2D>("tica_gotova"),Content.Load<Texture2D>("tica_stit"), new Rectangle(0, 0, 50, 57));
 			//			score = Content.Load<SpriteFont> ("SpriteFont1");
 
 

@@ -71,6 +71,7 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\drawable\Splash1.png" />
     <AndroidResource Include="Resources\drawable\Splash.png" />
+    <AndroidResource Include="Resources\drawable\monoandroidsplash.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Content\logo.png" />
